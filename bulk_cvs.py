@@ -10,7 +10,7 @@ import os
 dirname = os.path.dirname(__file__)
 
 file = os.path.join(dirname,'/data/cataclysmic_variables.csv')
-cvs = pd.read_csv(file)
+cvs = pd.read_csv('./data/cataclysmic_variables.csv')
 
 # don't want to deal with the crowded Tuc, Pav, or Sgr zones for now
 ind = (cvs['GCVS'].values == 'Tuc') | (cvs['GCVS'].values == 'Pav') | (cvs['GCVS'].values == 'Sgr')
