@@ -17,12 +17,12 @@ file = os.path.join(dirname,'/data/cataclysmic_variables.csv')
 cvs = pd.read_csv('./data/cataclysmic_variables.csv')
 
 # don't want to deal with the crowded Tuc, Pav, or Sgr zones for now
-ind = (cvs['GCVS'].values == 'Tuc') | (cvs['GCVS'].values == 'Pav') | (cvs['GCVS'].values == 'Sgr')
+ind = (cvs['GCVS'].values == 'Tuc      ') | (cvs['GCVS'].values == 'Pav      ') | (cvs['GCVS'].values == 'Sgr      ')
 cvs = cvs.iloc[~ind]
 
 
-for i in range(len(cvs)):
-	cv = cvs.iloc[i]
+for j in range(len(cvs)):
+	cv = cvs.iloc[j]
 
 	ra = cv['RAJ2000']
 	dec = cv['DEJ2000']
@@ -50,8 +50,9 @@ for i in range(len(cvs)):
 				err += [res['err']]
 				zps += [res['zp']]
 				sectors += [tpf.sector]
-				trends1 += [tr.Remove_stellar_variability(lcs[i],err[i],variable=True)]
-				trends2 +=  [tr.Remove_stellar_variability(lcs[i],err[i],variable=False)]
+				trends1 += [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=True)]
+				trends2 +=  [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=False)]
+				
 
 			name = cv['Names']
 			plt.figure(figsize=(6.5,8))
@@ -89,11 +90,12 @@ for i in range(len(cvs)):
 				e = np.append(e,err[i])
 				t1 = np.append(t1,trends1[i])
 				t2 = np.append(t2,trends2[i])
-				
+
 				zz = np.ones(len(lcs[i][0])) * zps[i]
 				ss = np.ones(len(lcs[i][0])) * sectors[i]
 				z = np.append(z,zz)
 				s = np.append(s,ss)
+			df = pd.DataFrame(columns=['mjd','flux','err','trend1','trend2','zp','sector'])
 			df['mjd'] = mjd
 			df['flux'] = flux
 			df['err'] = e
