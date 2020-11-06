@@ -9,6 +9,10 @@ from astropy import units as u
 import os
 dirname = os.path.dirname(__file__)
 
+#where we're going we dont need warnings!!
+import warnings
+warnings.filterwarnings("ignore")
+
 file = os.path.join(dirname,'/data/cataclysmic_variables.csv')
 cvs = pd.read_csv('./data/cataclysmic_variables.csv')
 
