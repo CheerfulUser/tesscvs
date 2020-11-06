@@ -58,7 +58,7 @@ for i in range(len(cvs)):
 			plt.subplot(311)
 			plt.title(name)
 			for i in range(len(lcs)):
-				plt.plot(lcs[i][0],lcs[i][1],label='S ' + sectors[i])
+				plt.plot(lcs[i][0],lcs[i][1],label='S ' + str(sectors[i]))
 			plt.legend()
 
 			plt.subplot(312)
