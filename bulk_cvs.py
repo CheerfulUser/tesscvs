@@ -23,7 +23,8 @@ ind = (cvs['GCVS'].values == 'Tuc      ') | (cvs['GCVS'].values == 'Pav      ') 
 cvs = cvs.iloc[~ind]
 
 
-for j in range(len(cvs)):
+for j in range(len(cvs)-7):
+	j+=7
 	cv = cvs.iloc[j]
 
 	ra = cv['RAJ2000']
