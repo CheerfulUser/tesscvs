@@ -53,8 +53,14 @@ for j in range(len(cvs)-7):
 				err += [res['err']]
 				zps += [res['zp']]
 				sectors += [tpf.sector]
-				trends1 += [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=True)]
-				trends2 +=  [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=False)]
+				try:
+					print('trend error in {} sector {}'.format(cv['Names'],tpf.sector))
+					trends1 += [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=True)]
+					trends2 +=  [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=False)]
+				except:
+					filler = np.nan * np.ones(len(err[-1]))
+					trends1 += [filler]
+					trends2 == [filler]
 				
 
 			name = cv['Names']
