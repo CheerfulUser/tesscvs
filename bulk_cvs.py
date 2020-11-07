@@ -90,7 +90,7 @@ for j in range(len(cvs)):
 			e = err[0].copy()
 			t1 = trends1[0].copy()
 			t2 = trends2[0].copy()
-			z = np.ones(len(lcs[0][0])) * zps[0]
+			z = np.ones(len(lcs[0][0])) * zps[0][0]
 			s = np.ones(len(lcs[0][0])) * sectors[0]
 			for i in range(len(lcs)-1):
 				i += 1
@@ -100,7 +100,7 @@ for j in range(len(cvs)):
 				t1 = np.append(t1,trends1[i])
 				t2 = np.append(t2,trends2[i])
 
-				zz = np.ones(len(lcs[i][0])) * zps[i]
+				zz = np.ones(len(lcs[i][0])) * zps[i][0]
 				ss = np.ones(len(lcs[i][0])) * sectors[i]
 				z = np.append(z,zz)
 				s = np.append(s,ss)
