@@ -45,10 +45,10 @@ for j in range(len(cvs)-7):
 		if len(tess) > 1:
 			tpfs = []
 			for t in tess:
-				tpf = t.download(cutout_size=90)
-				aper_b18 = np.zeros(tpf.shape[1:], dtype=bool)
-				aper_b18[44:48, 44:47] = True
-				res = tr.Quick_reduce(tpf,aper=aper_b18)
+				tpf = t.download(cutout_size=40)
+				#aper_b18 = np.zeros(tpf.shape[1:], dtype=bool)
+				#aper_b18[44:48, 44:47] = True
+				res = tr.Quick_reduce(tpf)#,aper=aper_b18)
 				lcs += [res['lc']]
 				err += [res['err']]
 				zps += [res['zp']]
