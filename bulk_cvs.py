@@ -23,8 +23,8 @@ ind = (cvs['GCVS'].values == 'Tuc      ') | (cvs['GCVS'].values == 'Pav      ') 
 cvs = cvs.iloc[~ind]
 
 
-for j in range(len(cvs)-7):
-	j+=7
+for j in range(len(cvs)-44):
+	j+=44
 	cv = cvs.iloc[j]
 
 	ra = cv['RAJ2000']
@@ -48,7 +48,7 @@ for j in range(len(cvs)-7):
 					tpf = t.download(cutout_size=40)
 					#aper_b18 = np.zeros(tpf.shape[1:], dtype=bool)
 					#aper_b18[44:48, 44:47] = True
-					res = tr.Quick_reduce(tpf)#,aper=aper_b18)
+					res = tr.Quick_reduce(tpf,calibrate=False)#,aper=aper_b18)
 					lcs += [res['lc']]
 					err += [res['err']]
 					zps += [res['zp']]
