@@ -74,14 +74,14 @@ for j in range(len(cvs)):
 				plt.subplot(312)
 				plt.title('trend method 1')
 				for i in range(len(lcs)):
-					plt.fill_between(lcs[i][0],lcs[i][1]-trends1[i]-err[i],lcs[i][1]-trends1[i]+err[i],alpha=.5)
+					#plt.fill_between(lcs[i][0],lcs[i][1]-trends1[i]-err[i],lcs[i][1]-trends1[i]+err[i],alpha=.5)
 					plt.plot(lcs[i][0],lcs[i][1]-trends1[i])
 				plt.ylabel('Counts')
 				
 				plt.subplot(313)
 				plt.title('trend method 2')
 				for i in range(len(lcs)):
-					plt.fill_between(lcs[i][0],lcs[i][1]-trends2[i]-err[i],lcs[i][1]-trends2[i]+err[i],alpha=.5)
+					#plt.fill_between(lcs[i][0],lcs[i][1]-trends2[i]-err[i],lcs[i][1]-trends2[i]+err[i],alpha=.5)
 					plt.plot(lcs[i][0],lcs[i][1]-trends2[i])
 				plt.ylabel('Counts')
 				plt.xlabel('MJD')
