@@ -25,7 +25,7 @@ cvs = cvs.iloc[~ind]
 
 for j in range(len(cvs)):
 	cv = cvs.iloc[j]
-
+	print('NAME: ',cv['Names'])
 	ra = cv['RAJ2000']
 	dec = cv['DEJ2000']
 
