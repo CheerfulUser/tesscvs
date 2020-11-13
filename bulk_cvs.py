@@ -119,6 +119,12 @@ for j in range(len(cvs)-50):
 				df['trend2'] = t2
 				df['zp'] = z
 				df['sector'] = s
+				t1events = tr.Event_isolation(flux-t1,err=e,sig=3)
+				for i in range(len(t1events)):
+					df['t1event' + str(i+1)] = t1events[i]
+				t2events = tr.Event_isolation(flux-t2,err=e,sig=3)
+				for i in range(len(t2events)):
+					df['t2event' + str(i+1)] = t2events[i]
 
 				df.to_csv('./lcs/{}.csv'.format(savename),index=False)
 
