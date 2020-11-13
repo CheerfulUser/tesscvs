@@ -23,8 +23,7 @@ ind = (cvs['GCVS'].values == 'Tuc      ') | (cvs['GCVS'].values == 'Pav      ') 
 cvs = cvs.iloc[~ind]
 
 
-for j in range(len(cvs)-50):
-	j+=50
+for j in range(len(cvs)):
 	cv = cvs.iloc[j]
 
 	ra = cv['RAJ2000']
@@ -54,10 +53,10 @@ for j in range(len(cvs)-50):
 					zps += [res['zp']]
 					sectors += [tpf.sector]
 					try:
-						print('trend error in {} sector {}'.format(cv['Names'],tpf.sector))
 						trends1 += [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=True)]
 						trends2 +=  [tr.Remove_stellar_variability(lcs[-1],err[-1],variable=False)]
 					except:
+						print('trend error in {} sector {}'.format(cv['Names'],tpf.sector))
 						filler = np.nan * np.ones(len(err[-1]))
 						trends1 += [filler]
 						trends2 == [filler]
