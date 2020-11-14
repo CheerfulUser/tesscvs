@@ -59,7 +59,7 @@ for j in range(len(cvs)):
 						print('trend error in {} sector {}'.format(cv['Names'],tpf.sector))
 						filler = np.nan * np.ones(len(err[-1]))
 						trends1 += [filler]
-						trends2 == [filler]
+						trends2 += [filler]
 					
 
 				name = cv['Names']
@@ -118,13 +118,19 @@ for j in range(len(cvs)):
 				df['trend2'] = t2
 				df['zp'] = z
 				df['sector'] = s
-				t1events = tr.Event_isolation(flux-t1,err=e,sig=3)
-				for i in range(len(t1events)):
-					df['t1event' + str(i+1)] = t1events[i]
-				t2events = tr.Event_isolation(flux-t2,err=e,sig=3)
-				for i in range(len(t2events)):
-					df['t2event' + str(i+1)] = t2events[i]
-
+				try:
+					t1events = tr.Event_isolation(flux-t1,err=e,sig=3)
+					for i in range(len(t1events)):
+						df['t1event' + str(i+1)] = t1events[i]
+				except:
+					pass
+				try:
+					t2events = tr.Event_isolation(flux-t2,err=e,sig=3)
+					for i in range(len(t2events)):
+						df['t2event' + str(i+1)] = t2events[i]
+				except:
+					pass
+				
 				df.to_csv('./lcs/{}.csv'.format(savename),index=False)
 
 				print('finished {}'.format(name))
