@@ -63,6 +63,7 @@ for j in range(len(cvs)):
 					
 
 				name = cv['Names']
+				print('MAKE FIGURE')
 				plt.figure(figsize=(6.5,8))
 				plt.subplot(311)
 				plt.title(name)
@@ -91,6 +92,7 @@ for j in range(len(cvs)):
 				plt.savefig('./figs/{}.pdf'.format(savename))
 
 				# save to cvs
+				print('SAVE TO CSV')
 				mjd = lcs[0][0].copy()
 				flux = lcs[0][1].copy()
 				e = err[0].copy()
@@ -130,7 +132,7 @@ for j in range(len(cvs)):
 						df['t2event' + str(i+1)] = t2events[i]
 				except:
 					pass
-				
+
 				df.to_csv('./lcs/{}.csv'.format(savename),index=False)
 
 				print('finished {}'.format(name))
