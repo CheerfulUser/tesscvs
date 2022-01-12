@@ -34,50 +34,53 @@ for j in range(len(cvs)):
     t1 = []
     t2 = []
     sectors = []
-    for ob in obs:
-        try:
-            tt = tr.tessreduce(obs_list=ob,reduce=True)
-            tt.to_flux()
-            lcs += [tt.lc]
-            sectors += [tt.tpf.sector]
-        except:
-            print('Failed for ', ob)
+    try:
+	    for ob in obs:
+	        try:
+	            tt = tr.tessreduce(obs_list=ob,reduce=True)
+	            tt.to_flux()
+	            lcs += [tt.lc]
+	            sectors += [tt.tpf.sector]
+	        except:
+	            print('Failed for ', ob)
 
 
-    name = cv['Names']
-    print('MAKE FIGURE')
-    plt.figure(figsize=(6.5,8))
-    plt.title(name)
-    for i in range(len(lcs)):
-        plt.plot(lcs[i][0],lcs[i][1],label='S ' + str(sectors[i]))
-    plt.legend()
-    plt.ylabel('mJy')
-    plt.xlabel('MJD')
-    plt.tight_layout()
+	    name = cv['Names']
+	    print('MAKE FIGURE')
+	    plt.figure(figsize=(6.5,8))
+	    plt.title(name)
+	    for i in range(len(lcs)):
+	        plt.plot(lcs[i][0],lcs[i][1],label='S ' + str(sectors[i]))
+	    plt.legend()
+	    plt.ylabel('mJy')
+	    plt.xlabel('MJD')
+	    plt.tight_layout()
 
-    savename = name.replace('/',' ').replace(' ','_')
-    plt.savefig('./figs/{}.pdf'.format(savename))
+	    savename = name.replace('/',' ').replace(' ','_')
+	    plt.savefig('./figs/{}.pdf'.format(savename))
 
-    # save to cvs
-    print('SAVE TO CSV')
-    mjd = lcs[0][0].copy()
-    flux = lcs[0][1].copy()
-    e = lcs[0][2].copy()
-    s = np.ones(len(lcs[0][0])) * sectors[0]
-    for i in range(len(lcs)-1):
-        i += 1
-        mjd = np.append(mjd,lcs[i][0])
-        flux = np.append(flux,lcs[i][1])
-        e = np.append(e,lcs[i][2])
+	    # save to cvs
+	    print('SAVE TO CSV')
+	    mjd = lcs[0][0].copy()
+	    flux = lcs[0][1].copy()
+	    e = lcs[0][2].copy()
+	    s = np.ones(len(lcs[0][0])) * sectors[0]
+	    for i in range(len(lcs)-1):
+	        i += 1
+	        mjd = np.append(mjd,lcs[i][0])
+	        flux = np.append(flux,lcs[i][1])
+	        e = np.append(e,lcs[i][2])
 
-        ss = np.ones(len(lcs[i][0])) * sectors[i]
-        s = np.append(s,ss)
-    df = pd.DataFrame(columns=['mjd','flux','err','trend1','trend2','sector'])
-    df['mjd'] = mjd
-    df['flux'] = flux
-    df['err'] = e
-    df['sector'] = s
-    
-    df.to_csv('./lcs/{}.csv'.format(savename),index=False)
+	        ss = np.ones(len(lcs[i][0])) * sectors[i]
+	        s = np.append(s,ss)
+	    df = pd.DataFrame(columns=['mjd','flux','err','trend1','trend2','sector'])
+	    df['mjd'] = mjd
+	    df['flux'] = flux
+	    df['err'] = e
+	    df['sector'] = s
+	    
+	    df.to_csv('./lcs/{}.csv'.format(savename),index=False)
 
-    print('finished {}'.format(name))
+	    print('finished {}'.format(name))
+    except:
+    	print('eh')
