@@ -24,6 +24,7 @@ cvs = cvs.iloc[~ind]
 
 
 for j in range(len(cvs)):
+	j += 4
     cv = cvs.iloc[j]
     print('NAME: ',cv['Names'])
     ra = cv['RAJ2000']
