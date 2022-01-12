@@ -48,7 +48,7 @@ for j in range(len(cvs)):
 
 		name = cv['Names']
 		print('MAKE FIGURE')
-		plt.figure(figsize=(6.5,8))
+		plt.figure()
 		plt.title(name)
 		for i in range(len(lcs)):
 			plt.plot(lcs[i][0],lcs[i][1],label='S ' + str(sectors[i]))
