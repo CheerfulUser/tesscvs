@@ -47,24 +47,10 @@ for j in range(len(cvs)):
     name = cv['Names']
     print('MAKE FIGURE')
     plt.figure(figsize=(6.5,8))
-    plt.subplot(311)
     plt.title(name)
     for i in range(len(lcs)):
         plt.plot(lcs[i][0],lcs[i][1],label='S ' + str(sectors[i]))
     plt.legend()
-    plt.ylabel('mJy')
-
-    plt.subplot(312)
-    plt.title('trend method 1')
-    for i in range(len(lcs)):
-        plt.plot(t1[i][0],t1[i][1])
-    plt.ylabel('mJy')
-
-    plt.subplot(313)
-    plt.title('trend method 2')
-    for i in range(len(lcs)):
-        #plt.fill_between(lcs[i][0],lcs[i][1]-trends2[i]-err[i],lcs[i][1]-trends2[i]+err[i],alpha=.5)
-        plt.plot(t2[i][0],t2[i][1])
     plt.ylabel('mJy')
     plt.xlabel('MJD')
     plt.tight_layout()
